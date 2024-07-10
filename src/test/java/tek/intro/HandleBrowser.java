@@ -10,8 +10,18 @@ public class HandleBrowser {
         //Open Browser Chrome Browser
         ChromeDriver chromeDriver = new ChromeDriver();
 
+        //Use this Method to Maximize Browser
+        chromeDriver.manage().window().maximize();
+
         //Navigate to a URL
         chromeDriver.get("https://google.com");
+
+        //return String of Application title.
+       String title = chromeDriver.getTitle();
+        System.out.println(title);
+
+        //to Close browser entirely.
+        chromeDriver.quit();
 
 
 
