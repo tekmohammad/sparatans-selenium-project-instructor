@@ -18,12 +18,9 @@ public class Acitivity2 {
         driver.manage().window().maximize();
 
         driver.findElement(By.name("q")).sendKeys("Tekschool");
-
         Thread.sleep(1000);
-
         driver.findElement(By.name("btnK")).click();
-
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         driver.findElement(By.partialLinkText("TEK SCHOOL Modern")).click();
 
 
