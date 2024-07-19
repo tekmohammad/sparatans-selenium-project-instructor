@@ -11,7 +11,7 @@ public class UsingCssSelector {
         driver.get("https://retail.tekschool-students.com/");
         driver.manage().window().maximize();
 
-        Thread.sleep(1000);
+        Thread.sleep(10000);
 
         By titleLocator = By.cssSelector("div.home__categories-grid > div:nth-child(2) > h1");
         String text = driver.findElement(titleLocator).getText();
@@ -19,5 +19,9 @@ public class UsingCssSelector {
         System.out.println(text);
 
         driver.quit();
+    }
+
+    public By getButtonLocator(String buttonText) {
+        return By.xpath("//button[text() ='"+buttonText+"']");
     }
 }
