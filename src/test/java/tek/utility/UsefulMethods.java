@@ -2,6 +2,7 @@ package tek.utility;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
@@ -24,5 +25,16 @@ public class UsefulMethods {
        boolean isButtonEnabled = driver.findElement(By.id("loginBtn")).isEnabled();
 
         System.out.println(isButtonEnabled);
+
+
+        //getting attribute values
+        WebElement newCompantyElement = driver.findElement(By.id("newCompanyAccount"));
+
+        String hrefAttribute = newCompantyElement.getAttribute("href");
+        System.out.println(hrefAttribute);
+
+        String classAttribute = newCompantyElement.getAttribute("class");
+        System.out.println(classAttribute);
+        driver.quit();
     }
 }
