@@ -26,6 +26,8 @@ public class WindowHandling {
         //Step 1) get current window id.
         String currentWindowId = driver.getWindowHandle();
 
+        System.out.println(currentWindowId);
+
         driver.findElement(By.linkText("Test Selenium")).click();
         Thread.sleep(2000);
 
@@ -34,6 +36,7 @@ public class WindowHandling {
 
         // Step 3) Switch to new tab
         for(String tab : allTabs) {
+            //finding id for new tab
             if(!tab.equals(currentWindowId)) {
                 driver.switchTo().window(tab);
                 break;
