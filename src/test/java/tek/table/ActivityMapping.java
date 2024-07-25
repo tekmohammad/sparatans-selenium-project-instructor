@@ -7,9 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import tek.utility.SeleniumUtility;
 
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ActivityMapping {
 
@@ -42,7 +40,7 @@ public class ActivityMapping {
 
         Map<String, String> plans = new HashMap<>();
 
-        for(int row = 0; row < tableRows.size(); row++) {
+        for (int row = 0; row < tableRows.size(); row++) {
             String xpathForPlanType = "//table/tbody/tr[" + (row + 1) + "]/td[2]";
             String xpathForPrice = "//table/tbody/tr[" + (row + 1) + "]/td[3]";
 
@@ -53,6 +51,31 @@ public class ActivityMapping {
         }
 
         System.out.println(plans);
+
+        //[PlanType=Motorcycle, Plan Base price=104, Date Created=July 24, 2024, Date Expire= July 24, 2024]
+        //[PlanType=Motorcycle, Plan Base price=104, Date Created=July 24, 2024, Date Expire= July 24, 2024]
+        //[PlanType=Motorcycle, Plan Base price=104, Date Created=July 24, 2024, Date Expire= July 24, 2024]
+        //[PlanType=Motorcycle, Plan Base price=104, Date Created=July 24, 2024, Date Expire= July 24, 2024]
+        // List<Map<String,String>      Map< KEY, Map<String, String>>
+        List<Map<String, String>> data = new ArrayList<>();
+        for (int row = 0; row < tableRows.size(); row++) {
+            Map<String, String> rowData = new HashMap<>();
+            List<WebElement> columns = utility.getElements(By.xpath("//table/tbody/tr[1]/td"));
+            for (int col = 0; col < columns.size(); col++) {
+                if (col == 0) continue;
+
+                String xpathFormHeader = "//table/thead/tr/th[" + (col + 1) + "]";
+                String xpathCell = "//table/tbody/tr["+(row + 1)+"]/td["+(col + 1)+"]";
+
+               String key = utility.getElementText(By.xpath(xpathFormHeader));
+               String value = utility.getElementText(By.xpath(xpathCell));
+
+               rowData.put(key, value);
+            }
+            data.add(rowData);
+        }
+
+        System.out.println(data);
 
         driver.quit();
     }
