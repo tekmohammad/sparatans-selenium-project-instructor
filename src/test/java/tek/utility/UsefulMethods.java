@@ -16,16 +16,18 @@ public class UsefulMethods {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
 
-        driver.findElement(By.linkText("Sign in")).click();
+        clickOnElement(driver, By.linkText("Sign in"));
 
         driver.findElement(By.name("email")).sendKeys("some@gmail.com");
+
+
         driver.findElement(By.name("password")).sendKeys("password123");
 
         //If true means it's enabled. if false means element is disabled.
        boolean isButtonEnabled = driver.findElement(By.id("loginBtn")).isEnabled();
 
         System.out.println(isButtonEnabled);
-
+        clickOnElement(driver, By.id("loginBtn"));
 
         //getting attribute values
         WebElement newCompantyElement = driver.findElement(By.id("newCompanyAccount"));
@@ -36,5 +38,9 @@ public class UsefulMethods {
         String classAttribute = newCompantyElement.getAttribute("class");
         System.out.println(classAttribute);
         driver.quit();
+    }
+
+    public static void clickOnElement(WebDriver driver, By locator) {
+        driver.findElement(locator).click();
     }
 }
